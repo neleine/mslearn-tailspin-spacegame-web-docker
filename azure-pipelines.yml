@@ -39,6 +39,6 @@ stages:
     steps:
     - task: AzureWebAppContainer@1
       inputs:
-       appName: 'Neleine-WebApp'
+       appName: $(WebAppName)
        azureSubscription: 'Resource Manager Dockertest'
        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
