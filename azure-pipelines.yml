@@ -40,5 +40,5 @@ stages:
     - task: AzureWebAppContainer@1
       inputs:
        appName: 'Neleine-WebApp'
-       azureSubscription: 'AKS-sample'
+       azureSubscription: 'Visual Studio Enterprise Subscription'
        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
