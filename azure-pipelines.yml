@@ -40,10 +40,8 @@ stages:
     - group: Release
     steps:
     
-    - task: KubernetesManifest@1
+    - task: AzureWebAppContainer@1
       inputs:
-        action: 'deploy'
-        connectionType: 'kubernetesServiceConnection'
-        kubernetesServiceConnection: 'Kubernetes service connection'
-        namespace: 'nmspcnel'
-        manifests: 'deploy'
+       appName: $(WebAppName)
+       azureSubscription: 'Resource Manager Dockertest'
+       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
