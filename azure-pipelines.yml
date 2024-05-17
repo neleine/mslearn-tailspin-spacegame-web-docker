@@ -2,6 +2,7 @@ trigger:
 - '*'
 
 variables:
+
   buildConfiguration: 'Release'
   webRepository: 'web'
   tag: '$(Build.BuildId)'
@@ -25,6 +26,7 @@ stages:
         containerRegistry: 'Container Registry Connection'
         tags: |
           $(tag)
+      
 
 - stage: 'Deploy'
   displayName: 'Deploy the container'
@@ -37,8 +39,11 @@ stages:
     variables:
     - group: Release
     steps:
-    - task: AzureWebAppContainer@1
+    
+    - task: KubernetesManifest@1
       inputs:
-       appName: $(WebAppName)
-       azureSubscription: 'Resource Manager Dockertest'
-       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+        action: 'deploy'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'Kubernetes service connection'
+        namespace: 'nmspcnel'
+        manifests: 'deploy'
