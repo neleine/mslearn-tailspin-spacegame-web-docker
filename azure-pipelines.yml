@@ -40,5 +40,5 @@ stages:
     - task: AzureWebAppContainer@1
       inputs:
        appName: 'Neleine-WebApp'
-       azureSubscription: 'Resource Manager - Tailspin - Space Game'
+       azureSubscription: 'AKS-sample'
        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
