@@ -45,3 +45,10 @@ stages:
        appName: $(WebAppName)
        azureSubscription: 'Resource Manager Dockertest'
        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+       
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'deploy'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'Kubernetes service connection'
+        manifests: 'https://github.com/neleine/mslearn-tailspin-spacegame-web-docker/blob/main/azure-pipelines.yml'
